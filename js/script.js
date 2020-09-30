@@ -23,6 +23,9 @@ const languagesInputs = document.querySelectorAll("#languages input");
 const nameValidator = () => {
 
   // 1. Create a variable to store the `.value` of the `name` input and log it out
+  const userName = name.value;
+  console.log(userName);
+
   // 2. Call this `nameValidator` function in the submit listener below
     // To test it, type something in the name field on the form and click the submit button
 
@@ -93,7 +96,7 @@ const languageValidator = () => {
 
 /* Submit listener on the form element */
 form.addEventListener('submit', (e) => {
-
+  nameValidator();
   // 1. Create an if statement
     // If `(!nameValidator())` call `e.preventDefault();` 
       // And log out a message saying this validator prevented submission
