@@ -16,7 +16,6 @@ const framework = document.querySelector("#framework");
 const languagesContainer = document.querySelector("#radio-wrapper");
 const languagesInputs = document.querySelectorAll("#languages input");
 
-
 // YOUR CODE GOES HERE!!! Do the steps in the functions below to complete this challenge
 
 /* Helper function to validate name input */
@@ -25,14 +24,21 @@ const nameValidator = () => {
   // 1. Create a variable to store the `.value` of the `name` input and log it out
   const userName = name.value;
   console.log(userName);
-
   // 2. Call this `nameValidator` function in the submit listener below
     // To test it, type something in the name field on the form and click the submit button
 
   // 3. Create an if/else statement
     // If the name value.length is greater than zero, set the name input's border to white and return true
+    if (userName.length > 0) {
+      name.style.borderColor = 'white';
+      return true;
+      alert ("You've entered a name");
+    }
     // Else, set the name input's border to red and return false
-
+    else {
+      name.style.borderColoer = 'red';
+      return false;
+    }
 }
 
 
