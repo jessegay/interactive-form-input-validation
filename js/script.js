@@ -31,12 +31,14 @@ const nameValidator = () => {
     // If the name value.length is greater than zero, set the name input's border to white and return true
     if (userName.length > 0) {
       name.style.borderColor = 'white';
+      //alert ("You've entered a name");
       return true;
-      alert ("You've entered a name");
+      
     }
     // Else, set the name input's border to red and return false
     else {
-      name.style.borderColoer = 'red';
+      name.style.borderColor = 'red';
+      //alert ("Please enter a name");
       return false;
     }
 }
