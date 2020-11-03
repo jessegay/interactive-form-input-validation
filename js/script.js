@@ -108,7 +108,10 @@ form.addEventListener('submit', (e) => {
   // 1. Create an if statement
     // If `(!nameValidator())` call `e.preventDefault();` 
       // And log out a message saying this validator prevented submission
-  
+  if (!nameValidator()) {
+    e.preventDefault();
+    console.log('There is a problem with the name input which prevented submission');
+  }
   // 2. Repeat the above step for the rest of your validation functions
 
   // And feel free to comment out or delete any log statements from the validation functions above
