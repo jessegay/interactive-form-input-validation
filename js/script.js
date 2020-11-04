@@ -48,18 +48,31 @@ const nameValidator = () => {
 const emailValidator = () => {
 
   // 1. Create a variable to store the `.value` of the `email` input and log it out
+  const emailValue = email.value;
+  console.log(emailValue);
   // 2. Call this `emailValidator` function in the submit listener below 
     // To test it, type something in the email field on the form and click the submit button
 
   // 3. Create a variable to store the .indexOf of the `@` in the email value
+  const indexOfAt = emailValue.indexOf('@');
   // 4. Create a variable to store the .lastIndexOf of the `.` in the email value
+  const lastIndexOfDot = emailValue.lastIndexOf('.');
   // 5. Log out the two variables above
-
+  console.log(indexOfAt);
+  console.log(lastIndexOfDot);
   // 5. Create an if/else statement
     // If the `@` index is greater than one AND the `.` last index is greater than the `@` index + 1, 
       // Set the email's border to white and return true
-    // Else, set the email's border to red and return false
+      // Else, set the email's border to red and return false
 
+      if (indexOfAt > 1 && lastIndexOfDot > (indexOfAt + 1)) {
+        email.style.borderColor = 'white';
+        return true;
+      } else {
+        email.style.borderColor = 'red';
+        return false;
+      }
+    
 }
 
 
@@ -105,6 +118,7 @@ const languageValidator = () => {
 /* Submit listener on the form element */
 form.addEventListener('submit', (e) => {
   nameValidator();
+  emailValidator();
   // 1. Create an if statement
     // If `(!nameValidator())` call `e.preventDefault();` 
       // And log out a message saying this validator prevented submission
@@ -113,7 +127,11 @@ form.addEventListener('submit', (e) => {
     console.log('There is a problem with the name input which prevented submission');
   }
   // 2. Repeat the above step for the rest of your validation functions
-
+  if (!emailValidator()) {
+    e.preventDefault();
+    console.log('There is a problem with the email input which prevented submission');
+    // FIXME: Why is this throwing the error log when I DO enter an email? Oh, because I forget the if else logic.
+  }
   // And feel free to comment out or delete any log statements from the validation functions above
 
 
