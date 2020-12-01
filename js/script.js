@@ -80,14 +80,23 @@ const emailValidator = () => {
 const frameworkValidator = () => {
 
   // 1. Create a variable to store the `.value` of the `framework` element and log it out
+  const frameworkValue = framework.value;
+  console.log(frameworkValue);
   // 2. Call this `frameworkValidator` function in the submit listener below 
     // And then click the submit button to test it
 
   // 3. Create an if/else statement
     // If the framework work value does not equal the default value of 'Choose framework', 
+    // FIXME: How do I get the default value? My solution of options[0] seems like a hack, and doesn't work anyway.
       // Set the framework element's border to white and return true
     // Else, set the framework element's border to red and return false
-
+    if (frameworkValue != framework.options[0]) {
+      framework.style.borderColor = 'white';
+      return true;
+    } else {
+      framework.style.borderColor = 'red';
+      return false;
+    }
 }
 
 
@@ -95,16 +104,25 @@ const frameworkValidator = () => {
 const languageValidator = () => {
 
   // 1. Log out the `languagesContainer` and `languagesInputs` variables from above
+  console.log(languagesContainer);
+  console.log(languagesInputs);
+
   // 2. Call this `languageValidator` function in the submit listener below 
     // And then click the submit button to test it
 
   // 3. Loop over the languagesInputs
     // Create an if statement
       // If `(languagesInputs[i].checked)`, set the languagesContainer section's border to white and return true
-
+  for (let i = 0; i < languagesInputs.length; i++) {
+    if (languagesInputs[i].checked) {
+      languagesContainer.style.borderColor = 'white';
+      return true;
+    }
+  }
   // 4. After the loop, set the border to red and return false
     // Note that this code after the loop will only run if the loop concludes without finding a clicked language
-
+  languagesContainer.style.borderColor = 'red';
+  return false;
 }
 
 
@@ -119,6 +137,8 @@ const languageValidator = () => {
 form.addEventListener('submit', (e) => {
   nameValidator();
   emailValidator();
+  frameworkValidator();
+  languageValidator();
   // 1. Create an if statement
     // If `(!nameValidator())` call `e.preventDefault();` 
       // And log out a message saying this validator prevented submission
@@ -127,14 +147,27 @@ form.addEventListener('submit', (e) => {
     console.log('There is a problem with the name input which prevented submission');
   }
   // 2. Repeat the above step for the rest of your validation functions
-  if (!emailValidator()) {
+  else if (!emailValidator()) {
     e.preventDefault();
     console.log('There is a problem with the email input which prevented submission');
-    // FIXME: Why is this throwing the error log when I DO enter an email? Oh, because I forget the if else logic.
+  }
+  else if (!frameworkValidator()) {
+    e.preventDefault();
+    console.log('There is a problem with the framework input which prevented submission');
+  }
+  else if (!languageValidator()) {
+    e.preventDefault();
+    console.log('There is a problem with the lanaguage validator input which prevented submission');
+  }
+ 
+ 
+ 
+  else {
+    console.log("inputs looks good");
   }
   // And feel free to comment out or delete any log statements from the validation functions above
 
 
   // Submit handler test log - Feel free to delete this or comment it out
-  console.log('Submit handler is functional!');
+  //console.log('Submit handler is functional!');
 });
