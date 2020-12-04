@@ -81,16 +81,30 @@ const frameworkValidator = () => {
 
   // 1. Create a variable to store the `.value` of the `framework` element and log it out
   const frameworkValue = framework.value;
-  console.log(frameworkValue);
+  console.log(` This is frameworkValue ${frameworkValue}`);
+
+  // I want to get the default value of the framework select to use in the if/else below.
+  const defaultSelectedFramework = () => {
+    for (let index = 0; index < framework.length; index++) {
+    const option = framework[index];
+    if (option.defaultSelected) {
+      console.log(`${option.value} is the .defaultSelected option`)
+      return option.value;
+      }
+    }
+  }
+ 
   // 2. Call this `frameworkValidator` function in the submit listener below 
     // And then click the submit button to test it
 
   // 3. Create an if/else statement
     // If the framework work value does not equal the default value of 'Choose framework', 
-    // FIXME: How do I get the default value? My solution of options[0] seems like a hack, and doesn't work anyway.
+    // FIXME: How do I get the default value? I tried getting it via my defaultSelectedFramework() function on 87. Doesn't work. Feels very kludgy.
+    // Is there a simpler way,e.g. like framework.option.defaultSelected () ?
+
       // Set the framework element's border to white and return true
     // Else, set the framework element's border to red and return false
-    if (frameworkValue != framework.options[0]) {
+    if (frameworkValue != defaultSelectedFramework) {
       framework.style.borderColor = 'white';
       return true;
     } else {
